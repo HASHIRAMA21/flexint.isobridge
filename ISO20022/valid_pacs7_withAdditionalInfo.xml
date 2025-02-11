@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.007.001.05" xmlns:ns2="http://www.Progressoft.com/ACH">
+	<FIToFIPmtRvsl>
+		<GrpHdr>
+			<MsgId>NBOM170301001</MsgId>
+			<CreDtTm>2016-12-18T10:04:24.322+02:00</CreDtTm>
+			<NbOfTxs>1</NbOfTxs>
+			<IntrBkSttlmDt>2016-12-18</IntrBkSttlmDt>
+			<SttlmInf>
+				<SttlmMtd>CLRG</SttlmMtd>
+				<ClrSys>
+					<Prtry>ACH</Prtry>
+				</ClrSys>
+			</SttlmInf>
+			<InstgAgt>
+				<FinInstnId>
+					<BICFI>NBOMOMRX</BICFI>
+				</FinInstnId>
+			</InstgAgt>
+			<InstdAgt>
+				<FinInstnId>
+					<BICFI>IZZBOMRU</BICFI>
+				</FinInstnId>
+			</InstdAgt>
+		</GrpHdr>
+		<OrgnlGrpInf>
+			<OrgnlMsgId>NBOM170228003</OrgnlMsgId>
+			<OrgnlMsgNmId>pacs.008.001.05</OrgnlMsgNmId>
+		</OrgnlGrpInf>
+		<TxInf>
+			<RvslId>NBOM170301001001</RvslId>
+			<OrgnlTxId>NBOM170228003001</OrgnlTxId>
+			<RvsdIntrBkSttlmAmt Ccy="OMR">10</RvsdIntrBkSttlmAmt>
+			<RvslRsnInf>
+				<Rsn>
+					<Prtry>1</Prtry>
+				</Rsn>
+				<AddtlInf>Additional Info</AddtlInf>
+			</RvslRsnInf>
+		</TxInf>
+		<SplmtryData>
+			<Envlp>
+				<ns2:supplementaryData>
+					<ns2:Items>
+						<ns2:Item key="batchSource">1</ns2:Item>
+					</ns2:Items>
+				</ns2:supplementaryData>
+			</Envlp>
+		</SplmtryData>
+	</FIToFIPmtRvsl>
+</Document>

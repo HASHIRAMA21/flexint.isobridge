@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.002.001.06" xmlns:ns2="http://www.Progressoft.com/ACH">
+	<FIToFIPmtStsRpt>
+		<GrpHdr>
+			<MsgId>0002160817003</MsgId>
+			<CreDtTm>2016-12-18T10:04:24.322+02:00</CreDtTm>
+			<InstgAgt>
+				<FinInstnId>
+					<BICFI>NBOMOMRX</BICFI>
+				</FinInstnId>
+			</InstgAgt>
+			<InstdAgt>
+				<FinInstnId>
+					<BICFI>IZZBOMRU</BICFI>
+				</FinInstnId>
+			</InstdAgt>
+		</GrpHdr>
+		<OrgnlGrpInfAndSts>
+			<OrgnlMsgId>160817x000004</OrgnlMsgId>
+			<OrgnlMsgNmId>pacs.008.001.05</OrgnlMsgNmId>
+			<GrpSts>RJCT</GrpSts>
+			<StsRsnInf>
+				<Rsn>
+					<Prtry>002</Prtry>
+				</Rsn>
+				<AddtlInf>Additional Info</AddtlInf>
+			</StsRsnInf>
+		</OrgnlGrpInfAndSts>
+		<TxInfAndSts>
+			<StsId>0002160817003000</StsId>
+			<OrgnlEndToEndId>E2E</OrgnlEndToEndId>
+			<OrgnlTxId>0001160817003001</OrgnlTxId>
+			<TxSts>RJCT</TxSts>
+			<StsRsnInf>
+				<Rsn>
+					<Prtry>320</Prtry>
+				</Rsn>
+				<AddtlInf>Additional Info</AddtlInf>
+			</StsRsnInf>
+		</TxInfAndSts>
+		<SplmtryData>
+			<Envlp>
+				<ns2:supplementaryData>
+					<ns2:Items>
+						<ns2:Item key="batchSource">1</ns2:Item>
+					</ns2:Items>
+				</ns2:supplementaryData>
+			</Envlp>
+		</SplmtryData>
+	</FIToFIPmtStsRpt>
+</Document>

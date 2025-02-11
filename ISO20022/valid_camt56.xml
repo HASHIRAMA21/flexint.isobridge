@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.056.001.04" xmlns:ns2="http://www.Progressoft.com/ACH">
+	<FIToFIPmtCxlReq>
+		<Assgnmt>
+			<Id>NBOM16092500D051</Id>
+			<Assgnr>
+				<Agt>
+					<FinInstnId>
+						<BICFI>NBOMOMRX</BICFI>
+					</FinInstnId>
+				</Agt>
+			</Assgnr>
+			<Assgne>
+				<Agt>
+					<FinInstnId>
+						<BICFI>IZZBOMRU</BICFI>
+					</FinInstnId>
+				</Agt>
+			</Assgne>
+			<CreDtTm>2016-12-18T10:04:24.322+02:00</CreDtTm>
+		</Assgnmt>
+		<Undrlyg>
+			<OrgnlGrpInfAndCxl>
+				<GrpCxlId>NBOM16092500D051</GrpCxlId>
+				<OrgnlMsgId>NBOM16092500D110</OrgnlMsgId>
+				<OrgnlMsgNmId>pacs.008.001.05</OrgnlMsgNmId>
+				<NbOfTxs>1</NbOfTxs>
+				<GrpCxl>false</GrpCxl>
+			</OrgnlGrpInfAndCxl>
+			<TxInf>
+				<CxlId>NBOM16092500D000</CxlId>
+				<OrgnlTxId>NBOM16092500D001</OrgnlTxId>
+				<CxlRsnInf>
+					<Rsn>
+						<Prtry>1</Prtry>
+					</Rsn>
+					<AddtlInf>e12e12</AddtlInf>
+				</CxlRsnInf>
+			</TxInf>
+		</Undrlyg>
+		<SplmtryData>
+			<Envlp>
+				<ns2:supplementaryData>
+					<ns2:Items>
+						<ns2:Item key="batchSource">1</ns2:Item>
+					</ns2:Items>
+				</ns2:supplementaryData>
+			</Envlp>
+		</SplmtryData>
+	</FIToFIPmtCxlReq>
+</Document>

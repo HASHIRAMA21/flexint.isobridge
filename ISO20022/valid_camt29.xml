@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.029.001.05" xmlns:ns2="http://www.Progressoft.com/ACH">
+	<RsltnOfInvstgtn>
+		<Assgnmt>
+			<Id>IZZB16092500D</Id>
+			<Assgnr>
+				<Agt>
+					<FinInstnId>
+						<BICFI>IZZBOMRU</BICFI>
+					</FinInstnId>
+				</Agt>
+			</Assgnr>
+			<Assgne>
+				<Agt>
+					<FinInstnId>
+						<BICFI>NBOMOMRX</BICFI>
+					</FinInstnId>
+				</Agt>
+			</Assgne>
+			<CreDtTm>2016-12-18T11:04:24.322+03:00</CreDtTm>
+		</Assgnmt>
+		<Sts>
+			<AssgnmtCxlConf>true</AssgnmtCxlConf>
+		</Sts>
+		<CxlDtls>
+			<OrgnlGrpInfAndSts>
+				<OrgnlMsgId>NBOM16092500D</OrgnlMsgId>
+				<OrgnlMsgNmId>camt.056.001.04</OrgnlMsgNmId>
+				<GrpCxlSts>ACCR</GrpCxlSts>
+			</OrgnlGrpInfAndSts>
+			<TxInfAndSts>
+				<CxlStsId>IZZB16092500D001</CxlStsId>
+				<OrgnlTxId>NBOM16092500F001</OrgnlTxId>
+				<TxCxlSts>ACCR</TxCxlSts>
+				<CxlStsRsnInf>
+					<Rsn>
+						<Prtry>1000</Prtry>
+					</Rsn>
+					<AddtlInf>CANCELATION REPLY</AddtlInf>
+				</CxlStsRsnInf>
+			</TxInfAndSts>
+		</CxlDtls>
+		<SplmtryData>
+			<Envlp>
+				<ns2:supplementaryData>
+					<ns2:Items>
+						<ns2:Item key="batchSource">1</ns2:Item>
+					</ns2:Items>
+				</ns2:supplementaryData>
+			</Envlp>
+		</SplmtryData>
+	</RsltnOfInvstgtn>
+</Document>
