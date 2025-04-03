@@ -1,0 +1,681 @@
+[
+    {
+        "Namespace": "urn:iso:std:iso:20022:tech:xsd:pacs.008.001.05",
+        "Mappings": [
+            {
+                "NodeName": "GrpHdr",
+                "XPath": "FIToFICstmrCdtTrf/GrpHdr",
+                "Columns": [
+                    {
+                        "NodeName": "MsgId",
+                        "XPath": "MsgId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "CreDtTm",
+                        "XPath": "CreDtTm",
+                        "DataType": "datetime"
+                    },
+                    {
+                        "NodeName": "NbOfTxs",
+                        "XPath": "NbOfTxs",
+                        "DataType": "integer"
+                    },
+                    {
+                        "NodeName": "TtlIntrBkSttlmAmt",
+                        "XPath": "TtlIntrBkSttlmAmt",
+                        "DataType": "decimal"
+                    },
+                    {
+                        "NodeName": "IntrBkSttlmDt",
+                        "XPath": "IntrBkSttlmDt",
+                        "DataType": "date"
+                    },
+                    {
+                        "NodeName": "SttlmMtd",
+                        "XPath": "SttlmInf/SttlmMtd",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "ClrSys",
+                        "XPath": "SttlmInf/ClrSys/Prtry",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "InstgAgt BIC",
+                        "XPath": "InstgAgt/FinInstnId/BICFI",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "InstdAgt BIC",
+                        "XPath": "InstdAgt/FinInstnId/BICFI",
+                        "DataType": "string"
+                    }
+                ]
+            },
+            {
+                "NodeName": "CdtTrfTxInf",
+                "XPath": "FIToFICstmrCdtTrf/CdtTrfTxInf",
+                "Columns": [
+                    {
+                        "NodeName": "InstrId",
+                        "XPath": "PmtId/InstrId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "EndToEndId",
+                        "XPath": "PmtId/EndToEndId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "TxId",
+                        "XPath": "PmtId/TxId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "IntrBkSttlmAmt",
+                        "XPath": "IntrBkSttlmAmt",
+                        "DataType": "decimal"
+                    },
+                    {
+                        "NodeName": "SttlmPrty",
+                        "XPath": "SttlmPrty",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "ChrgBr",
+                        "XPath": "ChrgBr",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "Dbtr Nm",
+                        "XPath": "Dbtr/Nm",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "DbtrAcct",
+                        "XPath": "DbtrAcct/Id/Othr/Id",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "DbtrAgt BIC",
+                        "XPath": "DbtrAgt/FinInstnId/BICFI",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "CdtrAgt BIC",
+                        "XPath": "CdtrAgt/FinInstnId/BICFI",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "Cdtr Nm",
+                        "XPath": "Cdtr/Nm",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "CdtrAcct",
+                        "XPath": "CdtrAcct/Id/Othr/Id",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "RmtInf Ustrd",
+                        "XPath": "RmtInf/Ustrd",
+                        "DataType": "string"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "Namespace": "urn:iso:std:iso:20022:tech:xsd:pacs.003.001.05",
+        "Mappings": [
+            {
+                "NodeName": "GrpHdr",
+                "XPath": "FIToFICstmrDrctDbt/GrpHdr",
+                "Columns": [
+                    {
+                        "NodeName": "MsgId",
+                        "XPath": "MsgId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "CreDtTm",
+                        "XPath": "CreDtTm",
+                        "DataType": "datetime"
+                    },
+                    {
+                        "NodeName": "NbOfTxs",
+                        "XPath": "NbOfTxs",
+                        "DataType": "integer"
+                    },
+                    {
+                        "NodeName": "TtlIntrBkSttlmAmt",
+                        "XPath": "TtlIntrBkSttlmAmt",
+                        "DataType": "decimal"
+                    },
+                    {
+                        "NodeName": "IntrBkSttlmDt",
+                        "XPath": "IntrBkSttlmDt",
+                        "DataType": "date"
+                    },
+                    {
+                        "NodeName": "SttlmMtd",
+                        "XPath": "SttlmInf/SttlmMtd",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "ClrSys",
+                        "XPath": "SttlmInf/ClrSys/Prtry",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "InstgAgt BIC",
+                        "XPath": "InstgAgt/FinInstnId/BICFI",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "InstdAgt BIC",
+                        "XPath": "InstdAgt/FinInstnId/BICFI",
+                        "DataType": "string"
+                    }
+                ]
+            },
+            {
+                "NodeName": "DrctDbtTxInf",
+                "XPath": "FIToFICstmrDrctDbt/DrctDbtTxInf",
+                "Columns": [
+                    {
+                        "NodeName": "EndToEndId",
+                        "XPath": "PmtId/EndToEndId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "TxId",
+                        "XPath": "PmtId/TxId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "IntrBkSttlmAmt",
+                        "XPath": "IntrBkSttlmAmt",
+                        "DataType": "decimal"
+                    },
+                    {
+                        "NodeName": "SttlmPrty",
+                        "XPath": "SttlmPrty",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "ChrgBr",
+                        "XPath": "ChrgBr",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "MndtId",
+                        "XPath": "DrctDbtTx/MndtRltdInf/MndtId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "FrstColltnDt",
+                        "XPath": "DrctDbtTx/MndtRltdInf/FrstColltnDt",
+                        "DataType": "date"
+                    },
+                    {
+                        "NodeName": "Cdtr Nm",
+                        "XPath": "Cdtr/Nm",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "CdtrAcct",
+                        "XPath": "CdtrAcct/Id/Othr/Id",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "CdtrAgt BIC",
+                        "XPath": "CdtrAgt/FinInstnId/BICFI",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "Dbtr Nm",
+                        "XPath": "Dbtr/Nm",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "DbtrAcct",
+                        "XPath": "DbtrAcct/Id/Othr/Id",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "DbtrAgt BIC",
+                        "XPath": "DbtrAgt/FinInstnId/BICFI",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "Purp",
+                        "XPath": "Purp/Prtry",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "RmtInf Ustrd",
+                        "XPath": "RmtInf/Ustrd",
+                        "DataType": "string"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "Namespace": "urn:iso:std:iso:20022:tech:xsd:pacs.007.001.05",
+        "Mappings": [
+            {
+                "NodeName": "GrpHdr",
+                "XPath": "FIToFIPmtRvsl/GrpHdr",
+                "Columns": [
+                    {
+                        "NodeName": "MsgId",
+                        "XPath": "MsgId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "CreDtTm",
+                        "XPath": "CreDtTm",
+                        "DataType": "datetime"
+                    },
+                    {
+                        "NodeName": "NbOfTxs",
+                        "XPath": "NbOfTxs",
+                        "DataType": "integer"
+                    },
+                    {
+                        "NodeName": "IntrBkSttlmDt",
+                        "XPath": "IntrBkSttlmDt",
+                        "DataType": "date"
+                    },
+                    {
+                        "NodeName": "SttlmMtd",
+                        "XPath": "SttlmInf/SttlmMtd",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "ClrSys",
+                        "XPath": "SttlmInf/ClrSys/Prtry",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "InstgAgt BIC",
+                        "XPath": "InstgAgt/FinInstnId/BICFI",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "InstdAgt BIC",
+                        "XPath": "InstdAgt/FinInstnId/BICFI",
+                        "DataType": "string"
+                    }
+                ]
+            },
+            {
+                "NodeName": "TxInf",
+                "XPath": "FIToFIPmtRvsl/TxInf",
+                "Columns": [
+                    {
+                        "NodeName": "RvslId",
+                        "XPath": "RvslId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "OrgnlTxId",
+                        "XPath": "OrgnlTxId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "RvsdIntrBkSttlmAmt",
+                        "XPath": "RvsdIntrBkSttlmAmt",
+                        "DataType": "decimal"
+                    },
+                    {
+                        "NodeName": "RvslRsnInf",
+                        "XPath": "RvslRsnInf/Rsn/Prtry",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "AddtlInf",
+                        "XPath": "RvslRsnInf/AddtlInf",
+                        "DataType": "string"
+                    }
+                ]
+            }
+        ]
+    }, 
+    {
+        "Namespace": "urn:iso:std:iso:20022:tech:xsd:pacs.004.001.05",
+        "Mappings": [
+            {
+                "NodeName": "GrpHdr",
+                "XPath": "PmtRtr/GrpHdr",
+                "Columns": [
+                    {
+                        "NodeName": "MsgId",
+                        "XPath": "MsgId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "CreDtTm",
+                        "XPath": "CreDtTm",
+                        "DataType": "datetime"
+                    },
+                    {
+                        "NodeName": "NbOfTxs",
+                        "XPath": "NbOfTxs",
+                        "DataType": "integer"
+                    },
+                    {
+                        "NodeName": "IntrBkSttlmDt",
+                        "XPath": "IntrBkSttlmDt",
+                        "DataType": "date"
+                    },
+                    {
+                        "NodeName": "SttlmMtd",
+                        "XPath": "SttlmInf/SttlmMtd",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "ClrSys",
+                        "XPath": "SttlmInf/ClrSys/Prtry",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "InstgAgt BIC",
+                        "XPath": "InstgAgt/FinInstnId/BICFI",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "InstdAgt BIC",
+                        "XPath": "InstdAgt/FinInstnId/BICFI",
+                        "DataType": "string"
+                    }
+                ]
+            },
+            {
+                "NodeName": "TxInf",
+                "XPath": "PmtRtr/TxInf",
+                "Columns": [
+                    {
+                        "NodeName": "RtrId",
+                        "XPath": "RtrId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "OrgnlTxId",
+                        "XPath": "OrgnlTxId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "RtrdIntrBkSttlmAmt",
+                        "XPath": "RtrdIntrBkSttlmAmt",
+                        "DataType": "decimal"
+                    },
+                    {
+                        "NodeName": "RtrRsnInf",
+                        "XPath": "RtrRsnInf/Rsn/Prtry",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "AddtlInf",
+                        "XPath": "RtrRsnInf/AddtlInf",
+                        "DataType": "string"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "Namespace": "urn:iso:std:iso:20022:tech:xsd:camt.056.001.04",
+        "Mappings": [
+            {
+                "NodeName": "Assgnmt",
+                "XPath": "FIToFIPmtCxlReq/Assgnmt",
+                "Columns": [
+                    {
+                        "NodeName": "Id",
+                        "XPath": "Id",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "CreDtTm",
+                        "XPath": "CreDtTm",
+                        "DataType": "datetime"
+                    },
+                    {
+                        "NodeName": "InstgAgt BIC",
+                        "XPath": "Assgnr/Agt/FinInstnId/BICFI",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "InstdAgt BIC",
+                        "XPath": "Assgne/Agt/FinInstnId/BICFI",
+                        "DataType": "string"
+                    }
+                ]
+            },
+            {
+                "NodeName": "Undrlyg",
+                "XPath": "FIToFIPmtCxlReq/Undrlyg",
+                "Columns": [
+                    {
+                        "NodeName": "OrgnlMsgId",
+                        "XPath": "OrgnlGrpInfAndCxl/OrgnlMsgId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "GrpCxlId",
+                        "XPath": "OrgnlGrpInfAndCxl/GrpCxlId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "CxlId",
+                        "XPath": "TxInf/CxlId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "OrgnlTxId",
+                        "XPath": "TxInf/OrgnlTxId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "CxlRsnInf",
+                        "XPath": "TxInf/CxlRsnInf/Rsn/Prtry",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "AddtlInf",
+                        "XPath": "TxInf/CxlRsnInf/AddtlInf",
+                        "DataType": "string"
+                    }
+                ]
+            }
+        ]
+    }, {
+        "Namespace": "urn:iso:std:iso:20022:tech:xsd:camt.029.001.05",
+        "Mappings": [
+            {
+                "NodeName": "Assgnmt",
+                "XPath": "RsltnOfInvstgtn/Assgnmt",
+                "Columns": [
+                    {
+                        "NodeName": "Id",
+                        "XPath": "Id",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "InstgAgt BIC",
+                        "XPath": "Assgnr/Agt/FinInstnId/BICFI",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "InstdAgt BIC",
+                        "XPath": "Assgne/Agt/FinInstnId/BICFI",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "CreDtTm",
+                        "XPath": "CreDtTm",
+                        "DataType": "datetime"
+                    }
+                ]
+            },
+            {
+                "NodeName": "Sts",
+                "XPath": "RsltnOfInvstgtn/Sts",
+                "Columns": [
+                    {
+                        "NodeName": "AssgnmtCxlConf",
+                        "XPath": "AssgnmtCxlConf",
+                        "DataType": "boolean"
+                    }
+                ]
+            },
+            {
+                "NodeName": "CxlDtls",
+                "XPath": "RsltnOfInvstgtn/CxlDtls",
+                "Columns": [
+                    {
+                        "NodeName": "OrgnlMsgId",
+                        "XPath": "OrgnlGrpInfAndSts/OrgnlMsgId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "OrgnlMsgNmId",
+                        "XPath": "OrgnlGrpInfAndSts/OrgnlMsgNmId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "GrpCxlSts",
+                        "XPath": "OrgnlGrpInfAndSts/GrpCxlSts",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "CxlStsId",
+                        "XPath": "TxInfAndSts/CxlStsId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "OrgnlTxId",
+                        "XPath": "TxInfAndSts/OrgnlTxId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "TxCxlSts",
+                        "XPath": "TxInfAndSts/TxCxlSts",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "CxlStsRsnInf",
+                        "XPath": "TxInfAndSts/CxlStsRsnInf/Rsn/Prtry",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "AddtlInf",
+                        "XPath": "TxInfAndSts/CxlStsRsnInf/AddtlInf",
+                        "DataType": "string"
+                    }
+                ]
+            }
+        ]
+    }, {
+        "Namespace": "urn:iso:std:iso:20022:tech:xsd:pacs.002.001.06",
+        "Mappings": [
+            {
+                "NodeName": "GrpHdr",
+                "XPath": "FIToFIPmtStsRpt/GrpHdr",
+                "Columns": [
+                    {
+                        "NodeName": "MsgId",
+                        "XPath": "MsgId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "CreDtTm",
+                        "XPath": "CreDtTm",
+                        "DataType": "datetime"
+                    },
+                    {
+                        "NodeName": "InstgAgt BIC",
+                        "XPath": "InstgAgt/FinInstnId/BICFI",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "InstdAgt BIC",
+                        "XPath": "InstdAgt/FinInstnId/BICFI",
+                        "DataType": "string"
+                    }
+                ]
+            },
+            {
+                "NodeName": "OrgnlGrpInfAndSts",
+                "XPath": "FIToFIPmtStsRpt/OrgnlGrpInfAndSts",
+                "Columns": [
+                    {
+                        "NodeName": "OrgnlMsgId",
+                        "XPath": "OrgnlMsgId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "OrgnlMsgNmId",
+                        "XPath": "OrgnlMsgNmId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "GrpSts",
+                        "XPath": "GrpSts",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "StsRsnInf",
+                        "XPath": "StsRsnInf/Rsn/Prtry",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "AddtlInf",
+                        "XPath": "StsRsnInf/AddtlInf",
+                        "DataType": "string"
+                    }
+                ]
+            },
+            {
+                "NodeName": "TxInfAndSts",
+                "XPath": "FIToFIPmtStsRpt/TxInfAndSts",
+                "Columns": [
+                    {
+                        "NodeName": "StsId",
+                        "XPath": "StsId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "OrgnlEndToEndId",
+                        "XPath": "OrgnlEndToEndId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "OrgnlTxId",
+                        "XPath": "OrgnlTxId",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "TxSts",
+                        "XPath": "TxSts",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "StsRsnInf",
+                        "XPath": "StsRsnInf/Rsn/Prtry",
+                        "DataType": "string"
+                    },
+                    {
+                        "NodeName": "AddtlInf",
+                        "XPath": "StsRsnInf/AddtlInf",
+                        "DataType": "string"
+                    }
+                ]
+            }
+        ]
+    }
+]

@@ -4,6 +4,25 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Version>1.0.3</Version>
+        <Authors>KROHN</Authors>
+        <Company>SYNTHI AI</Company>
+        <Description>Cette bibliothèque de classe .NET fournit une solution robuste pour désérialiser, valider et traiter les fichiers ISO 20022, un standard largement utilisé dans les transactions financières (paiements SEPA, virements internationaux, etc.).
+
+            Elle prend en charge les formats XML et JSON des messages ISO 20022 (pain.001, pain.002, camt.053, etc.) et offre des fonctionnalités avancées pour :
+
+            Désérialiser les fichiers ISO 20022 en objets C#
+
+            Valider la structure et le contenu selon les règles métier
+
+            Manipuler les données (extraire, modifier, filtrer)
+
+            Reserialiser en XML/JSON pour l'envoi vers d'autres systèmes</Description>
+        <PackageTags>tag1 tag2 tag3</PackageTags>
+        <PackageProjectUrl>https://github.com/votre/projet</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/votre/projet.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
     
     <ItemGroup>
@@ -11,6 +30,8 @@
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.1" />
         <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.1" />
         <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.1" />
-        <PackageReference Include="System.Data.SqlClient" Version="4.9.0"/>
+        <PackageReference Include="Quartz" Version="3.14.0" />
+        <PackageReference Include="Quartz.Extensions.Hosting" Version="3.14.0" />
+        <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
     </ItemGroup>
 </Project>

@@ -1,0 +1,50 @@
+using System;
+using System.Windows.Forms;
+using FlexIntClearing.Views;
+using FlexInt.BLL.Core;
+using Microsoft.Extensions.DependencyInjection;
+using System.Threading.Tasks;
+
+namespace FlexIntClearing
+{
+    static class Program
+    {
+        static string MAIN_001 = "Une erreur technique est survenue.";
+        private static IServiceProvider _serviceProvider;
+        private static ISyncService _syncService;
+
+        [STAThread]
+        static void Main()
+        {
+            try
+            {
+                // Configuration des services
+                _serviceProvider = ConfigHelper.ConfigureServices();
+                _syncService = _serviceProvider.GetRequiredService<ISyncService>();
+
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+
+                // Démarrer la synchronisation
+                Task.Run(async () => await _syncService.StartAsync());
+
+                // Lancer l'interface utilisateur
+                Application.Run(new WelComeView());
+
+                // Arrêter la synchronisation
+                _syncService.StopAsync().GetAwaiter().GetResult();
+            }
+            catch (Exception ex)
+            {
+                softtech.Utils.Common.CLog.WriteError(
+                    System.Reflection.MethodBase.GetCurrentMethod().Name, 
+                    ex, 
+                    ex.Message, 
+                    2);
+                
+                Application.Exit();
+                AppCore.ResetAppCore();
+            }
+        }
+    }
+}

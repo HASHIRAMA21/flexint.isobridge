@@ -1,0 +1,189 @@
+using System;
+using System.Data;
+using System.Data.SqlClient;
+using System.IO;
+using System.Threading.Tasks;
+using System.Xml;
+using FlexInt.ISOBridge.Data;
+using ISO20022;
+using Microsoft.Extensions.Logging;
+
+namespace FlexInt.ISOBridge.Service;
+
+public class Iso20022Processor : IMessageProcessor
+{
+    private readonly DatabaseManager _databaseManager;
+    private readonly IParsingService _parsingService;
+    private readonly ILogger<Iso20022Processor> _logger;
+
+    public Iso20022Processor(DatabaseManager databaseManager, IParsingService parsingService, ILogger<Iso20022Processor> logger)
+    {
+        _databaseManager = databaseManager ?? throw new ArgumentNullException(nameof(databaseManager));
+        _parsingService = parsingService ?? throw new ArgumentNullException(nameof(parsingService));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+    }
+
+    public async Task ProcessAsync(string xmlFilePath)
+    {
+        _logger.LogInformation($"Starting processing of file: {xmlFilePath}");
+
+        try
+        {
+            string messageType = GetMessageTypeFromXml(xmlFilePath);
+            if (string.IsNullOrEmpty(messageType))
+            {
+                _logger.LogError($"Could not determine message type for file: {xmlFilePath}");
+                return;
+            }
+
+            await _parsingService.ParseXmlAsync(xmlFilePath, (dataSet, messageGuid, fileGuid) => InsertDataAsync(dataSet, messageGuid, messageType));
+            _logger.LogInformation($"Finished processing of file: {xmlFilePath}");
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"Error processing file {xmlFilePath}");
+            throw;
+        }
+    }
+
+    private string GetMessageTypeFromXml(string xmlFilePath)
+    {
+        try
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(xmlFilePath);
+            XmlNode documentNode = doc.SelectSingleNode("/Document");
+            if (documentNode != null && documentNode.Attributes["xmlns"] != null)
+            {
+                return documentNode.Attributes["xmlns"].Value;
+            }
+            return null;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"Error reading XML file {xmlFilePath}");
+            return null;
+        }
+    }
+
+    private async Task InsertDataAsync(DataSet dataSet, Guid messageGuid, string messageType)
+    {
+        using var connection = _databaseManager.CreateConnection();
+        await connection.OpenAsync();
+        using var transaction = connection.BeginTransaction();
+
+        try
+        {
+            await InsertMessageMetadataAsync(connection, transaction, messageGuid, messageType);
+
+            foreach (DataTable dataTable in dataSet.Tables)
+            {
+                string tableName = GetTableNameFromMessageType(messageType, dataTable.TableName);
+                await CreateTableIfNotExistsAsync(connection, transaction, tableName, dataTable.Columns);
+
+                string insertQuery = BuildInsertQuery(tableName, dataTable.Columns);
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    using var command = new SqlCommand(insertQuery, connection, transaction);
+                    command.Parameters.Add("@MessageGuid", SqlDbType.UniqueIdentifier).Value = messageGuid;
+                    AddRowParameters(command, dataTable.Columns, row);
+                    await command.ExecuteNonQueryAsync();
+                }
+            }
+
+            await transaction.CommitAsync();
+        }
+        catch (Exception ex)
+        {
+            await transaction.RollbackAsync();
+            _logger.LogError(ex, "Database transaction failed");
+            throw;
+        }
+    }
+
+    private string GetTableNameFromMessageType(string messageType, string dataTableName)
+    {
+        //Logic to generate tableName from messageType and dataTableName.
+        //Example: replace ":" and "." from messageType, and append dataTableName.
+        return messageType.Replace(":", "_").Replace(".", "_").Replace("/","_") + "_" + dataTableName;
+    }
+
+    private string BuildInsertQuery(string tableName, DataColumnCollection columns)
+    {
+        var columnNames = new List<string> { "MessageGuid" };
+        var valuePlaceholders = new List<string> { "@MessageGuid" };
+
+        foreach (DataColumn column in columns)
+        {
+            if (column.ColumnName != "MessageGuid" && column.ColumnName != "Message")
+            {
+                columnNames.Add(column.ColumnName);
+                valuePlaceholders.Add($"@{column.ColumnName}");
+            }
+        }
+
+        return $"INSERT INTO {tableName} ({string.Join(", ", columnNames)}) VALUES ({string.Join(", ", valuePlaceholders)});";
+    }
+
+    private void AddRowParameters(SqlCommand command, DataColumnCollection columns, DataRow row)
+    {
+        foreach (DataColumn column in columns)
+        {
+            if (column.ColumnName != "MessageGuid" && column.ColumnName != "Message")
+            {
+                command.Parameters.AddWithValue($"@{column.ColumnName}", row[column.ColumnName] ?? DBNull.Value);
+            }
+        }
+    }
+
+    private async Task InsertMessageMetadataAsync(SqlConnection connection, SqlTransaction transaction, Guid messageGuid, string messageType)
+    {
+        const string insertMessageQuery = @"
+                INSERT INTO Messages (MessageGuid, MessageId, MessageType, CreationDateTime, OriginalMessageId, OriginalMessageNameId, Status, AdditionalInfo)
+                VALUES (@MessageGuid, @MessageId, @MessageType, @CreationDateTime, @OriginalMessageId, @OriginalMessageNameId, @Status, @AdditionalInfo);";
+
+        using var command = new SqlCommand(insertMessageQuery, connection, transaction);
+        command.Parameters.Add("@MessageGuid", SqlDbType.UniqueIdentifier).Value = messageGuid;
+        command.Parameters.Add("@MessageId", SqlDbType.VarChar, 255).Value = DBNull.Value;
+        command.Parameters.Add("@MessageType", SqlDbType.VarChar, 255).Value = messageType;
+        command.Parameters.Add("@CreationDateTime", SqlDbType.DateTime).Value = DateTime.UtcNow;
+        command.Parameters.Add("@OriginalMessageId", SqlDbType.VarChar, 255).Value = DBNull.Value;
+        command.Parameters.Add("@OriginalMessageNameId", SqlDbType.VarChar, 255).Value = DBNull.Value;
+        command.Parameters.Add("@Status", SqlDbType.VarChar, 255).Value = "Processed";
+        command.Parameters.Add("@AdditionalInfo", SqlDbType.VarChar).Value = DBNull.Value;
+        await command.ExecuteNonQueryAsync();
+    }
+
+    private async Task CreateTableIfNotExistsAsync(SqlConnection connection, SqlTransaction transaction, string tableName, DataColumnCollection columns)
+    {
+        using var command = new SqlCommand($"SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = '{tableName}'", connection, transaction);
+        if (await command.ExecuteScalarAsync() == null)
+        {
+            var createTableQuery = new List<string> { "MessageGuid UNIQUEIDENTIFIER FOREIGN KEY REFERENCES Messages(MessageGuid)", "Id BIGINT IDENTITY(1,1) PRIMARY KEY" };
+
+            foreach (DataColumn column in columns)
+            {
+                if (column.ColumnName != "MessageGuid" && column.ColumnName != "Message")
+                {
+                    createTableQuery.Add($"{column.ColumnName} {GetSqlType(column.DataType)}");
+                }
+            }
+
+            await new SqlCommand($"CREATE TABLE {tableName} ({string.Join(", ", createTableQuery)});", connection, transaction).ExecuteNonQueryAsync();
+        }
+    }
+
+    private string GetSqlType(Type type)
+    {
+        return type.Name switch
+        {
+            "Int32" => "INT",
+            "Decimal" => "DECIMAL(18,2)",
+            "DateTime" => "DATETIME2",
+            "Boolean" => "BIT",
+            "String" => "TEXT",
+            _ => "VARCHAR(255)"
+        };
+    }
+}

@@ -1,0 +1,47 @@
+using System;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using FlexInt.ISOBridge.Data;
+using FlexInt.ISOBridge.V1.Messages.Pacs003;
+using FlexInt.ISOBridge.V1.Messages.Pacs007;
+using FlexInt.ISOBridge.V1.Messages.Pacs008;
+using FlexInt.ISOBridge.V1.Services;
+
+namespace FlexInt.ISOBridge.V1
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            // Charger la configuration à partir du fichier appsettings.json
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(AppContext.BaseDirectory)
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            // Créer le logger
+            var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
+            var logger = loggerFactory.CreateLogger<DatabaseManager>();
+
+            // Initialiser le DatabaseManager
+            var databaseManager = new DatabaseManager(configuration.GetConnectionString("DefaultConnection"), logger);
+            
+            // Initialiser les services de mappage
+            var mappingService = new MappingService(databaseManager);
+            var xmlService = new XmlGenerationService(databaseManager);
+
+            // Récupérer et mapper les données des tables
+            var pacs003Data = mappingService.MapPacs003Data();
+            var pacs007Data = mappingService.MapPacs007Data();
+            var pacs008Data = mappingService.MapPacs008Data();
+
+            // Générer les fichiers XML pour chaque type de document
+            xmlService.GenerateXmlFiles(pacs003Data, "OutputFiles", "pacs003");
+            xmlService.GenerateXmlFiles(pacs007Data, "OutputFiles", "pacs007");
+            xmlService.GenerateXmlFiles(pacs008Data, "OutputFiles", "pacs008");
+
+            // Indiquer que le traitement est terminé
+            Console.WriteLine("Traitement terminé.");
+        }
+    }
+}
