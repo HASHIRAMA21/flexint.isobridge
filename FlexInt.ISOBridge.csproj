@@ -19,8 +19,8 @@
 
             Reserialiser en XML/JSON pour l'envoi vers d'autres systèmes</Description>
         <PackageTags>tag1 tag2 tag3</PackageTags>
-        <PackageProjectUrl>https://github.com/votre/projet</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/votre/projet.git</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/HASHIRAMA21/flexint.isobridge.git</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/HASHIRAMA21/flexint.isobridge.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
